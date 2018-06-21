@@ -12,6 +12,8 @@
     <modules>
         <module>finchley-eureka</module>
         <module>finchley-config</module>
+        <module>finchley-gateway</module>
+        <module>finchley-service-provide</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,6 +21,13 @@
         <version>2.0.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    </properties>
 
     <dependencyManagement>
         <dependencies>

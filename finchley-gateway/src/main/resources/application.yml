@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: service_route
+        uri: lb://user
+        predicates:
+        - Path=/test/**
+        filters:
+        # \u65AD\u8DEF\u5668\u548Cfallback
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+        # \u91C7\u7528redis\u9650\u6D41
+#        - name: RequestRateLimiter
+#          args:
+#            redis-rate-limiter.replenishRate: 10
+#            redis-rate-limiter.burstCapacity: 20
+        # \u91CD\u8BD5 At this time a URI using the forward protocol does not support using the retry filter.
+        - name: Retry
+          args:
+            retries: 3
+            statuses: BAD_GATEWAY
+        - StripPrefix=1
+  application:
+    name: gateway
+        #\u81EA\u5B9A\u4E49\u9650\u6D41 A rate limiter can also be defined as a bean implementing the RateLimiter interface. In configuration, reference the bean by name using SpEL. #{@myRateLimiter} is a SpEL expression referencing a bean with the name myRateLimiter.
+        #- name: RequestRateLimiter
+          #args:
+            #rate-limiter: "#{@myRateLimiter}"
+            #key-resolver: "#{@userKeyResolver}"
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:pwd@localhost:8761/eureka/
+server:
+  port: 1000

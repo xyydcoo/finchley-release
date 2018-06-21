@@ -1,0 +1,9 @@
+server:
+  port: 3001
+spring:
+  application:
+    name: user
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:pwd@localhost:8761/eureka/
