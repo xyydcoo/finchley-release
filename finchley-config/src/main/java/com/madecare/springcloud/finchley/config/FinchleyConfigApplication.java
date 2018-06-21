@@ -6,6 +6,8 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
 @EnableConfigServer
+//标准的spring cloud独立于体系之外，eureka也可以去config读取配置信息
+//@EnableDiscoveryClient
 public class FinchleyConfigApplication {
 
     public static void main(String[] args) {

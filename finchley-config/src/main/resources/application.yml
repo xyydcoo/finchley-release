@@ -21,12 +21,12 @@ spring:
         git:
           uri: http://192.168.0.240/server-demo/finchley-config.git
           searchPaths: cf
-          username: xuyangyang@Madecare.com
+          username: xuyangyang@madecare.com
           password: 376892900q1
           #强制推送
-          force-pull: true
+          #force-pull: true
           #强制删除
-          deleteUntrackedBranches: true
+          #deleteUntrackedBranches: true
           #临时配置文件路径
           #basedir: /usr/local/mcloud/finchley/config
         #native:
@@ -42,13 +42,9 @@ spring:
               #nonProxyHosts: example.com
 server:
   port: 8888
-eureka:
-  instance:
-    preferIpAddress: true
-    ip-address: ${SERVER_IP}
-    instance-id: ${SERVER_IP}:${server.port}
-    status-page-url: http://${SERVER_IP}:${server.port}/swagger-ui.html
-  client:
-    serviceUrl:
-      defaultZone: http://root:madecare@${EUREKA_IP}:1111/eureka/
+#标准的config应该独立于eureka之外  甚至eureka可以去config读取配置文件
+#eureka:
+  #client:
+    #serviceUrl:
+      #defaultZone: http://admin:pwd@localhost:8761/eureka/
 
