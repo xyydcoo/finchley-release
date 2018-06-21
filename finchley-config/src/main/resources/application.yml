@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: finchley-config
+  #profiles:
+    #native是本地读取文件，composite复合读取文件
+    #active: native
+  cloud:
+    config:
+      server:
+        #复合配置
+        #composite:
+        #-
+          #type: svn
+          #uri: file:///path/to/svn/repo
+        #-
+          #type: git
+          #uri: file:///path/to/rex/git/repo
+        #-
+          #type: git
+          #uri: file:///path/to/walter/git/repo
+        git:
+          uri: http://192.168.0.240/server-demo/finchley-config.git
+          searchPaths: cf
+          username: xuyangyang@Madecare.com
+          password: 376892900q1
+          #强制推送
+          force-pull: true
+          #强制删除
+          deleteUntrackedBranches: true
+          #临时配置文件路径
+          #basedir: /usr/local/mcloud/finchley/config
+        #native:
+          #本地配置文件路径
+          #search-locations:
+          #代理配置
+          #proxy:
+            #https:
+              #host: my-proxy.host.io
+              #password: myproxypassword
+              #port: '3128'
+              #username: myproxyusername
+              #nonProxyHosts: example.com
+server:
+  port: 8888
+eureka:
+  instance:
+    preferIpAddress: true
+    ip-address: ${SERVER_IP}
+    instance-id: ${SERVER_IP}:${server.port}
+    status-page-url: http://${SERVER_IP}:${server.port}/swagger-ui.html
+  client:
+    serviceUrl:
+      defaultZone: http://root:madecare@${EUREKA_IP}:1111/eureka/
+
