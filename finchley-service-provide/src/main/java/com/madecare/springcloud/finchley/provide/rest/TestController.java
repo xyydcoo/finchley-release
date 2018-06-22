@@ -16,8 +16,7 @@ public class TestController {
 
     @RequestMapping("")
     public String test(HttpServletRequest request){
-        boolean b = request.getHeaderNames().hasMoreElements();
-        System.out.println(b);
+        System.out.println(request.getHeader("test"));
         return "hello world!";
     }
 }

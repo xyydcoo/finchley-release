@@ -2,6 +2,7 @@ package com.madecare.springcloud.finchley.gateway.filterfactory;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import reactor.core.publisher.Mono;
 
@@ -10,6 +11,7 @@ import reactor.core.publisher.Mono;
  * @Description: PostGatewayFilterFactory
  * @Date: 2018/6/21 16:15
  */
+@Configuration
 public class PostGatewayFilterFactory extends AbstractGatewayFilterFactory<PostGatewayFilterFactory.Config> {
 
     public PostGatewayFilterFactory() {

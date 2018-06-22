@@ -2,7 +2,8 @@ package com.madecare.springcloud.finchley.gateway.filterfactory;
 
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
-import org.springframework.cloud.gateway.filter.factory.AbstractNameValueGatewayFilterFactory;
+import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
 /**
@@ -10,18 +11,32 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
  * @Description: PreGatewayFilterFactory
  * @Date: 2018/6/21 16:07
  */
-public class PreGatewayFilterFactory extends AbstractNameValueGatewayFilterFactory {
+@Configuration
+public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGatewayFilterFactory.Config> {
+
+    public PreGatewayFilterFactory() {
+        super(Config.class);
+    }
+
+    public GatewayFilter apply() {
+        return apply(o -> {
+        });
+    }
 
     @Override
-    public GatewayFilter apply(NameValueConfig config) {
+    public GatewayFilter apply(Config config) {
+        // grab configuration from Config object
         return (exchange, chain) -> {
-            System.out.println("PreGatewayFilterFactory");
-            ServerHttpRequest request = exchange.getRequest().mutate()
-                    .header("sign","gateway")
-                    .build();
-
-            return chain.filter(exchange.mutate().request(request).build());
+            //If you want to build a "pre" filter you need to manipulate the
+            //request before calling change.filter
+            ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
+            builder.header("test", "test");
+            //use builder to manipulate the request
+            return chain.filter(exchange.mutate().request(builder.build()).build());
         };
     }
 
+    public static class Config {
+        //Put the configuration properties for your filter here
+    }
 }
