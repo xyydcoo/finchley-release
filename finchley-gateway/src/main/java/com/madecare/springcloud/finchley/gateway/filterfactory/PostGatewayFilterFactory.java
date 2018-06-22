@@ -11,7 +11,6 @@ import reactor.core.publisher.Mono;
  * @Description: PostGatewayFilterFactory
  * @Date: 2018/6/21 16:15
  */
-@Configuration
 public class PostGatewayFilterFactory extends AbstractGatewayFilterFactory<PostGatewayFilterFactory.Config> {
 
     public PostGatewayFilterFactory() {

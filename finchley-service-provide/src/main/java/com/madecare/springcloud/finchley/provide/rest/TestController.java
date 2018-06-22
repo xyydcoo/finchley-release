@@ -1,5 +1,7 @@
 package com.madecare.springcloud.finchley.provide.rest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/test")
 public class TestController {
 
+    private static Logger logger = LoggerFactory.getLogger(TestController.class);
+
     @RequestMapping("")
     public String test(HttpServletRequest request){
-        System.out.println(request.getHeader("test"));
+        logger.info(request.getHeader("sign"));
         return "hello world!";
     }
 }

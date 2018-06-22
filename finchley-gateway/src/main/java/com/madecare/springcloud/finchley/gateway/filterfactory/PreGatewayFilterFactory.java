@@ -11,7 +11,6 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
  * @Description: PreGatewayFilterFactory
  * @Date: 2018/6/21 16:07
  */
-@Configuration
 public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGatewayFilterFactory.Config> {
 
     public PreGatewayFilterFactory() {
@@ -30,7 +29,7 @@ public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGat
             //If you want to build a "pre" filter you need to manipulate the
             //request before calling change.filter
             ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
-            builder.header("test", "test");
+            builder.header("sign", "GatewayFilter");
             //use builder to manipulate the request
             return chain.filter(exchange.mutate().request(builder.build()).build());
         };
