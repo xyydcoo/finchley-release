@@ -7,7 +7,7 @@
     <groupId>com.madecare.springcloud</groupId>
     <artifactId>finchley-release</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <modules>
         <module>finchley-eureka</module>

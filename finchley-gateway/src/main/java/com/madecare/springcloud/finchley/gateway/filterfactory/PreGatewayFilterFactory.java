@@ -28,7 +28,7 @@ public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGat
             //If you want to build a "pre" filter you need to manipulate the
             //request before calling change.filter
             ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
-            builder.header("GatewayFilter", "PreGatewayFilterFactory");
+            builder.header("GatewayFilter", "PreGatewayFilterFactory success");
             //use builder to manipulate the request
             return chain.filter(exchange.mutate().request(builder.build()).build());
         };

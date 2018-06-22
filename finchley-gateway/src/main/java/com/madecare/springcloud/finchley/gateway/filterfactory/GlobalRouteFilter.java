@@ -1,4 +1,4 @@
-﻿package com.madecare.springcloud.finchley.gateway.filterfactory;
+package com.madecare.springcloud.finchley.gateway.filterfactory;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -15,7 +15,7 @@ public class GlobalRouteFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest.Builder builder = exchange.getRequest().mutate();
-        builder.header("filter","GlobalFilter");
+        builder.header("GlobalFilter","GlobalFilter success");
         chain.filter(exchange.mutate().request(builder.build()).build());
         return chain.filter(exchange.mutate().request(builder.build()).build());
     }
