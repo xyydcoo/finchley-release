@@ -20,7 +20,8 @@ public class TestController {
 
     @RequestMapping("")
     public String test(HttpServletRequest request){
-        logger.info(request.getHeader("sign"));
+        logger.info(request.getHeader("GatewayFilter"));
+        logger.info(request.getHeader("GlobalFilter"));
         return "hello world!";
     }
 }
