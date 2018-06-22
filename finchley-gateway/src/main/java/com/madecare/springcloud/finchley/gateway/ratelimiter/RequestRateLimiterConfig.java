@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 @Configuration
 public class RequestRateLimiterConfig {
     @Bean
-    KeyResolver userKeyResolver() {
-        return exchange -> Mono.just(exchange.getRequest().getQueryParams().getFirst("user"));
+    public KeyResolver addressKeyResolver() {
+        return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
     }
 }

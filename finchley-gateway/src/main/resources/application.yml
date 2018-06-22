@@ -4,6 +4,17 @@ spring:
       discovery:
         locator:
           enabled: true
+  redis:
+    host: 192.168.0.240
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: 1
+    database: 1
+
 #      routes:
 #      - id: service_route
 #        uri: lb://user
