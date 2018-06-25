@@ -20,7 +20,6 @@ public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGat
         return apply(o -> {
         });
     }
-
     @Override
     public GatewayFilter apply(Config config) {
         // grab configuration from Config object
@@ -33,7 +32,6 @@ public class PreGatewayFilterFactory extends AbstractGatewayFilterFactory<PreGat
             return chain.filter(exchange.mutate().request(builder.build()).build());
         };
     }
-
     public static class Config {
         //Put the configuration properties for your filter here
     }

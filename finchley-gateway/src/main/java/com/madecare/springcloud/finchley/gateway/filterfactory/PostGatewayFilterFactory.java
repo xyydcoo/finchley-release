@@ -24,7 +24,6 @@ public class PostGatewayFilterFactory extends AbstractGatewayFilterFactory<PostG
         return apply(o -> {
         });
     }
-
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
@@ -35,7 +34,6 @@ public class PostGatewayFilterFactory extends AbstractGatewayFilterFactory<PostG
             }));
         };
     }
-
     public static class Config {
         //Put the configuration properties for your filter here
     }

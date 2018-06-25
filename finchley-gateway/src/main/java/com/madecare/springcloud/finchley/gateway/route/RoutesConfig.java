@@ -32,9 +32,4 @@ public class RoutesConfig {
                 .route(r -> r.path("/test/**").filters(f -> f.retry(3).filter(new PreGatewayFilterFactory().apply()).filter(new PostGatewayFilterFactory().apply()).requestRateLimiter().rateLimiter(RedisRateLimiter.class,config -> config.setBurstCapacity(1).setReplenishRate(1)).configure(config -> config.setKeyResolver(addressKeyResolver)).stripPrefix(1).hystrix(config -> config.setFallbackUri("forward:/fallback").setName("fallbackcmd"))).uri("lb://user"))
                 .build();
     }
-
-    @Bean
-    public GlobalRouteFilter globalRouteFilter() {
-        return new GlobalRouteFilter();
-    }
 }
