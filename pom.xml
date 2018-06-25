@@ -14,6 +14,7 @@
         <module>finchley-config</module>
         <module>finchley-gateway</module>
         <module>finchley-service-provide</module>
+        <module>finchley-service-consumer</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

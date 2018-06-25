@@ -3,6 +3,7 @@ package com.madecare.springcloud.finchley.provide.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,15 +24,21 @@ public class TestController {
     private int port;
 
     @RequestMapping("/weight")
-    public String weight(){
+    public String weightTest(){
         logger.info("handle the request's port："+port );
         return "hello world!";
     }
 
     @RequestMapping("")
-    public String test(HttpServletRequest request){
+    public String filterTest(HttpServletRequest request){
         logger.info(request.getHeader("GatewayFilter"));
         logger.info(request.getHeader("GlobalFilter"));
         return "hello world!";
+    }
+
+    @GetMapping("/feign")
+    public String feignTest(HttpServletRequest request){
+        logger.info(request.getHeader("interceptor"));
+        return "feign call success!";
     }
 }
