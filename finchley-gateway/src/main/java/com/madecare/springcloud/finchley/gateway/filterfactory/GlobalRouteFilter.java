@@ -1,5 +1,7 @@
 package com.madecare.springcloud.finchley.gateway.filterfactory;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,10 @@ import reactor.core.publisher.Mono;
  */
 @Configuration
 public class GlobalRouteFilter implements GlobalFilter {
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         ServerHttpRequest.Builder builder = exchange.getRequest().mutate();

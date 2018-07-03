@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +38,21 @@ public class TestController {
     }
 
     @GetMapping("/feign")
-    public String feignTest(HttpServletRequest request){
+    public String feignTest(HttpServletRequest request, @RequestParam("flag") int flag){
         logger.info(request.getHeader("interceptor"));
+       if(flag>0){
+           return "feign call success!";
+       }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "feign call success!";
+    }
+
+    @GetMapping("/fallbackRetry")
+    public String fallbackRetry(HttpServletRequest request){
+        return "fallbackRetry!";
     }
 }
