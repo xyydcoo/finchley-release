@@ -3,6 +3,7 @@ package com.madecare.springcloud.finchley.consumer.config;
 import com.madecare.springcloud.finchley.consumer.interceptor.BasicHeaderRequestInterceptor;
 import feign.Feign;
 import feign.Logger;
+import feign.Retryer;
 import org.springframework.context.annotation.Bean;
 
 /**
@@ -15,6 +16,10 @@ public class FooConfiguration {
     @Bean
     Logger.Level feignLoggerLevel() {
         return Logger.Level.BASIC;
+    }
+    @Bean
+    Retryer retryer(){
+        return  Retryer.NEVER_RETRY;
     }
 
     @Bean

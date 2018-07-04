@@ -40,7 +40,7 @@ public class TestController {
     @GetMapping("/feign")
     public String feignTest(HttpServletRequest request, @RequestParam("flag") int flag){
         logger.info(request.getHeader("interceptor"));
-       if(flag>0){
+       if(flag>5){
            return "feign call success!";
        }
         try {
