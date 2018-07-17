@@ -13,6 +13,7 @@
         <module>finchley-eureka</module>
         <module>finchley-config</module>
         <module>finchley-gateway</module>
+        <module>finchley-admin</module>
         <module>finchley-service-provide</module>
         <module>finchley-service-consumer</module>
     </modules>

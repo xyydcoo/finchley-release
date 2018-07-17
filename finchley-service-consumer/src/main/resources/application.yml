@@ -1,6 +1,10 @@
 spring:
   application:
     name: user-consumer
+  boot:
+    admin:
+      client:
+        url: localhost:5000
 feign:
   hystrix:
     enabled: true
@@ -10,3 +14,10 @@ eureka:
       defaultZone: http://admin:pwd@localhost:8761/eureka/
 server:
   port: 4001
+logging:
+  file: user-consumer.log
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -14,7 +14,6 @@ spring:
         min-idle: 0
         max-wait: 1
     database: 1
-
 #      routes:
 #      - id: service_route
 #        uri: lb://user
@@ -59,3 +58,5 @@ eureka:
       defaultZone: http://admin:pwd@localhost:8761/eureka/
 server:
   port: 1000
+logging:
+  file: gateway.log
