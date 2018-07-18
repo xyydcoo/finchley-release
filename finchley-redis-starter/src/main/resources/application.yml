@@ -5,6 +5,14 @@ server:
   port: 4000
 mcloud:
   redis:
+    ssl: false
+    timeout: 0
+    jedis:
+      pool:
+        maxIdle: 8
+        minIdle: 0
+        maxActive: 8
+        maxWait: 1
     cluster:
       nodes:
         - 192.168.0.244:7001
@@ -13,3 +21,4 @@ mcloud:
         - 192.168.0.244:7004
         - 192.168.0.244:7005
         - 192.168.0.244:7006
+      maxRedirects: 6

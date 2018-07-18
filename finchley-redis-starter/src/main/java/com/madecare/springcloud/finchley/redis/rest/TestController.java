@@ -1,14 +1,10 @@
 package com.madecare.springcloud.finchley.redis.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.nio.ByteBuffer;
 
 /**
  * @Author: xuyangyang
@@ -18,23 +14,24 @@ import java.nio.ByteBuffer;
 @RestController
 public class TestController {
 
-    private final ReactiveRedisTemplate reactiveRedisTemplate;
+    private final StringRedisTemplate redisTemplate;
+
+    private volatile int testIndex = 0;
 
     @Autowired
-    public TestController(ReactiveRedisTemplate reactiveRedisTemplate) {
-        this.reactiveRedisTemplate = reactiveRedisTemplate;
+    public TestController(StringRedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
-    @GetMapping("/test")
-    public Flux test() {
-        Flux flux = reactiveRedisTemplate.execute(connection -> {
-            RedisSerializationContext.SerializationPair stringSerializationPair = reactiveRedisTemplate.getSerializationContext().getStringSerializationPair();
-            ByteBuffer key = stringSerializationPair.write(new String("Reactive-Redis"));
-            ByteBuffer value = stringSerializationPair.write(new String("Spring data redis 2.0"));
-            Mono<Boolean> set = connection.stringCommands().set(key, value);
-            return set;
+    @GetMapping("/write")
+    public Boolean write() {
+        return redisTemplate.execute((RedisCallback<Boolean>) connection -> {
+            String key = "Spring Boot 2.0 Test";
+            String value = String.valueOf(testIndex++);
+            return connection.set(key.getBytes(), value.getBytes());
+
         });
-        return flux;
     }
+
 
 }
