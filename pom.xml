@@ -16,6 +16,7 @@
         <module>finchley-admin</module>
         <module>finchley-service-provide</module>
         <module>finchley-service-consumer</module>
+        <module>finchley-redis-starter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

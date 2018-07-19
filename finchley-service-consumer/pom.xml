@@ -61,6 +61,11 @@
             <groupId>org.jolokia</groupId>
             <artifactId>jolokia-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.madecare.springcloud</groupId>
+            <artifactId>finchley-redis-starter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
