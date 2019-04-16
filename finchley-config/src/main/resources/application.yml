@@ -21,8 +21,8 @@ spring:
         git:
           uri: http://192.168.0.240/server-demo/finchley-config.git
           searchPaths: cf
-          username: xuyangyang@madecare.com
-          password: 376892900q1
+          username: admin
+          password: admin
           #强制推送
           #force-pull: true
           #强制删除

@@ -28,19 +28,7 @@ public class UserClientFallbackFactory implements FallbackFactory<UserClient> {
         return new UserClient() {
             @Override
             public String feignTest(int flag) {
-                throwable.printStackTrace();
-                logger.info(throwable.toString());
-                if (throwable.toString().contains("TimeoutException")) {
-                    String s = userClient.feignTest(flag++);
-//                      String response = restTemplate.getForObject("http://user/test/fallbackRetry",String.class);
-//                      logger.info(response);
-                    System.out.println(s);
-                    System.out.println("success");
-                    return s;
-                } else {
-                    return "unknown error";
-                }
-
+                return null;
             }
         };
     }
